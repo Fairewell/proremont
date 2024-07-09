@@ -8,7 +8,7 @@ const Button1 = ({ id, title, x = 5, y = 3.5, fontSize = 2, onClick, wi }) => {
     color: button.text_color,
     borderRadius: '15px',
     transition: 'background-color 0.3s, color 0.3s',
-    width: wi ? '30%' : '100%', // Set the desired width here
+    width: wi ? '' : '100%', // Set the desired width here
     height: wi ? '50px' : '50px'
   });
 
@@ -35,7 +35,7 @@ const Button1 = ({ id, title, x = 5, y = 3.5, fontSize = 2, onClick, wi }) => {
   };
 
   const className = wi
-    ? `xs:py-1 xs:px-1.5 py-${y} px-${x} font-raleway xs:text-xs text-base xs:mx-1 xs:my-1 rounded-l data-twe-ripple-init
+    ? `xs:py-1 xs:px-1.5 py-${y} px-${x} sm:w-3/12 font-raleway xs:text-xs text-base xs:mx-1 xs:my-1 rounded-l data-twe-ripple-init
   data-twe-ripple-color="light"`
     : `py-${y} px-${x} font-raleway font-medium text-${fontSize}vw leading-[2.625vw] data-twe-ripple-init
   data-twe-ripple-color="light"`;
