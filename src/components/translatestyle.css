@@ -1,0 +1,15 @@
+.slide {
+    transition: transform 0.5s ease;
+}
+
+.slide-left {
+    transform: translateX(-100%);
+}
+
+.slide-right {
+    transform: translateX(100%);
+}
+
+.active {
+    transform: translateX(0);
+}
