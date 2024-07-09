@@ -18,6 +18,15 @@ module.exports = {
         raleway: ["Raleway", "sans-serif"],
         merriweather: ["Merriweather", "serif"],
       },
+      animation:{
+        fadeIn: 'fadeIn 0.5 ease-in-out',
+        keyframes: {
+          fadeIn:{
+            '0%': {opacity: 0},
+            '100%': {opacity: 1},
+          }
+        }
+      }
     },
     screens: {
       xs: "400px",

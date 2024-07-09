@@ -21,9 +21,9 @@ const AdvantagesSection = () => {
         <section className={`advantages-section bg-white bg-${advantages_bg} p-4 md:p-20 max-w-full w-full`}
             style={{ backgroundImage: `url(${advantages_bg})`, backgroundSize: 'cover' }}>
             <h2 className="font-merriweather text-center font-bold mb-4 text-lg md:text-xl">Почему стоит выбрать нас?</h2>
-            <div className={`advantages-list grid grid-flow-row auto-cols-max gap-4 justify-center`}>
+            <div className={`advantages-list grid grid-flow-row auto-cols-max gap-4 md:justify-center `}>
                 {groupedAdvantages.map((group, index) => (
-                    <div key={index} className="grouped-advantages flex flex-col md:flex-row justify-between xs:gap-4 md:gap-32">
+                    <div key={index} className="grouped-advantages flex flex-row md:flex-row justify-between xs:gap-4 md:gap-32">
                         {group.map((advantage) => (
                             <div
                                 key={advantage.id}
@@ -38,7 +38,7 @@ const AdvantagesSection = () => {
                                 />
                                 <p
                                     className="text-sm md:text-base"
-                                    style={window.innerWidth <= 1024 ? { fontSize: '0.675rem', lineHeight: '1.25rem' } : { fontSize: '1rem', lineHeight: '1.25rem' }}
+                                    style={window.innerWidth <= 560 ? { maxWidth: '120px', fontSize: '0.675rem', lineHeight: '1.25rem' } : { fontSize: '1rem', lineHeight: '1.25rem' }}
                                 >
                                     {advantage.text}
                                 </p>

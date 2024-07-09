@@ -7,15 +7,15 @@ const ServicePage = () => {
     const [selectedServiceId, setSelectedServiceId] = useState(null);
 
     return (
-        <div className="bg-primary w-full overflow-hidden">
-        <div className={`bg-white ${styles.paddingX} ${styles.flexCenter}`}>
-            <div className={`bg-white ${styles.boxWidth}`}>
-                <Plashka />
-                <Navbar />
+        <div className="bg-primary w-full overflow-hidden transition-all">
+            <div className={`bg-white ${styles.paddingX} ${styles.flexCenter}`}>
+                <div className={`bg-white ${styles.boxWidth}`}>
+                    <Plashka />
+                    <Navbar />
+                </div>
             </div>
-        </div>
             <div className={`bg-white ${styles.flexStart}`}>
-                <div className={`${styles.boxWidth}`}>
+                <div className={`${styles.boxWidth} transition-all`}>
                     <ButtonSlider setSelectedServiceId={setSelectedServiceId} />
                     <RequestComponent />
                 </div>

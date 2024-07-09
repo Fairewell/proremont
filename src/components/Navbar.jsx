@@ -26,7 +26,7 @@ const Navbar = () => {
       </ul>
 
       {/* Вывод ссылок на социальные сети */}
-      <div className="flex items-center">
+      <div className="xs:hidden flex items-center">
         {extLinks.map((extLink) => (
           <a key={extLink.id} href={extLink.link} className="ml-4">
             <extLink.icon size={24} />
@@ -45,15 +45,15 @@ const Navbar = () => {
         />
 
         {/* Боковое меню */}
-        <div className={`${!toggle ? "hidden" : "flex"} p-6 bg-black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}>
+        <div className={`${!toggle ? "hidden" : "flex"} p-6 bg-[#d9d9d9] absolute top-20 right-0 mx-4 my-16 min-w-[140px] rounded-xl sidebar`}>
           <ul className="list-none flex justify-end items-start flex-1 flex-col">
             {navLinks.map((nav, index) => (
               <li
                 key={nav.id}
-                className={`font-raleway font-medium cursor-pointer text-[16px] ${active === nav.title ? "text-white" : "text-dimWhite"} ${index === navLinks.length - 1 ? "mb-0" : "mb-4"}`}
+                className={`font-raleway font-medium cursor-pointer text-[16px] ${active === nav.title ? "text-[#FF4000]" : "text-dimBlack"} ${index === navLinks.length - 1 ? "mb-0" : "mb-4"}`}
                 onClick={() => setActive(nav.title)}
               >
-                <a href={`#${nav.id}`}>{nav.title}</a>
+                {nav.isSTR ? <Link to={`${nav.id}`}>{nav.title}</Link> : <a href ={`#${nav.id}`}>{nav.title}</a>}
               </li>
             ))}
           </ul>

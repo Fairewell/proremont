@@ -20,6 +20,8 @@ const RequestComponent = () => {
         });
     };
 
+    const i = 5;
+
     // Подписка на событие изменения размера окна
     useEffect(() => {
         window.addEventListener('resize', handleResize);
@@ -35,32 +37,28 @@ const RequestComponent = () => {
                 <img
                     src={steps1}
                     alt="menu"
-                    className={`w-[${window.innerWidth / 7}] h-[${window.innerHeight / 7}] object-contain`}
-                    onClick={() => prevSlide()}
+                    className={`w-[${window.innerWidth / i}] h-auto object-contain`}
                 />
                 <img
                     src={steps2}
                     alt="menu"
-                    className={`w-[${window.innerWidth / 7}] h-[${window.innerHeight / 7}] object-contain`}
-                    onClick={() => prevSlide()}
+                    className={`w-[${window.innerWidth / i}] h-auto object-contain`}
                 />
                 <img
                     src={steps3}
                     alt="menu"
-                    className={`w-[${window.innerWidth / 7}] h-[${window.innerHeight / 7}] object-contain`}
-                    onClick={() => prevSlide()}
+                    className={`w-[${window.innerWidth / i}] h-auto object-contain`}
                 />
                 <img
                     src={steps4}
                     alt="menu"
-                    className={`w-[${window.innerWidth / 7}] h-[${window.innerHeight / 7}] object-contain`}
-                    onClick={() => prevSlide()}
+                    className={`w-[${window.innerWidth / i}] h-auto object-contain`}
                 />
                 <img
                     src={steps5}
                     alt="menu"
-                    className={`w-[${window.innerWidth / 7}] h-[${window.innerHeight / 7}] object-contain`}
-                    onClick={() => prevSlide()}
+                    className={`w-[${window.innerWidth / i}] h-auto object-contain`}
+
                 />
             </div>
             <div class={`my-12 relative bg-black w-[${window.innerHeight - 50}] h-2 rounded-lg shadow`}>

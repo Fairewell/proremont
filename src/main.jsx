@@ -8,16 +8,16 @@ import Root from "./routes/root";
 import './index.css';
 import ErrorPage from './components/ErrorPage';
 import ServicePage from './routes/Servicespage';
+import AnimatedPage from './routes/AnimatePage';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root/>,
-    
+    element: <AnimatedPage><Root/></AnimatedPage>,
   },
   {
     path: "product/",
-    element: <ServicePage />,
+    element: <AnimatedPage><ServicePage /></AnimatedPage>,
   },
 ]);
 
