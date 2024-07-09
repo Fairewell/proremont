@@ -235,20 +235,24 @@ export const extLinks = [
 
 export const navLinks = [
   {
-    id: "home",
+    id: "/",
     title: "Главная",
+    isSTR: true,
   },
   {
     id: "features",
     title: "Проекты",
+    isSTR: false,
   },
   {
     id: "product",
     title: "Услуги",
+    isSTR: true,
   },
   {
     id: "clients",
     title: "Компания",
+    isSTR: false,
   },
 ];
 

@@ -9,7 +9,7 @@ const Button1 = ({ id, title, x = 5, y = 3.5, fontSize = 2, onClick, wi }) => {
     borderRadius: '15px',
     transition: 'background-color 0.3s, color 0.3s',
     width: wi ? '' : '100%', // Set the desired width here
-    height: wi ? '50px' : '50px'
+    height: wi ? '50px' : ''
   });
 
   const handleMouseEnter = () => {

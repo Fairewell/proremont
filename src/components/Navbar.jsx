@@ -3,6 +3,8 @@ import { useState } from "react";
 import { close, logo, menu } from "../assets";
 import { navLinks, extLinks } from "../constants";
 
+import { Outlet, Link } from "react-router-dom";
+
 const Navbar = () => {
   const [active, setActive] = useState("Home");
   const [toggle, setToggle] = useState(false);
@@ -18,7 +20,7 @@ const Navbar = () => {
             className={`font-raleway font-semibold cursor-pointer text-[16px] ${active === nav.title ? "text-yellow" : "text-black"} ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
             onClick={() => setActive(nav.title)}
           >
-            <a href={`#${nav.id}`}>{nav.title}</a>
+            {nav.isSTR ? <Link to={`${nav.id}`}>{nav.title}</Link> : <a href ={`#${nav.id}`}>{nav.title}</a>}
           </li>
         ))}
       </ul>

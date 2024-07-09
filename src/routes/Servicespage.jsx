@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styles from "./style";
-import { CTA, Footer, Navbar, Stats, Testimonials, Hero, ImageSlider, Plashka, AdvantagesSection, RequestComponent } from "./components";
-import { ButtonSlider, Temp, Calculator } from "./components/services";
+import styles from "../style";
+import { CTA, Footer, Navbar, Stats, Testimonials, Hero, ImageSlider, Plashka, AdvantagesSection, RequestComponent } from "../components";
+import { ButtonSlider, Temp, Calculator } from "../components/services";
 
 const ServicePage = () => {
     const [selectedServiceId, setSelectedServiceId] = useState(null);
