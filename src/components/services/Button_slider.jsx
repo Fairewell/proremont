@@ -7,7 +7,7 @@
     import 'slick-carousel/slick/slick-theme.css';
     import Temp from './temp';
     import Calculator from './calculator';
-
+    //32
     const ButtonSlider = () => {
         var settings = {
             dots: true,
