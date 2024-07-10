@@ -20,7 +20,7 @@ const Navbar = () => {
             className={`font-raleway font-semibold cursor-pointer text-[16px] ${active === nav.title ? "text-yellow" : "text-black"} ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
             onClick={() => setActive(nav.title)}
           >
-            {nav.isSTR ? <Link to={`${nav.id}`}>{nav.title}</Link> : <a href ={`#${nav.id}`}>{nav.title}</a>}
+            {nav.isSTR ? <Link to={`${nav.id}`}>{nav.title}</Link> : <a href={`#${nav.id}`}>{nav.title}</a>}
           </li>
         ))}
       </ul>
@@ -35,7 +35,7 @@ const Navbar = () => {
       </div>
 
       {/* Мобильное меню */}
-      <div className="sm:hidden flex flex-1 justify-end items-center">
+      <div className="sm:hidden flex flex-1 justify-end items-center z-50">
         {/* Кнопка меню */}
         <img
           src={toggle ? close : menu}
@@ -45,7 +45,7 @@ const Navbar = () => {
         />
 
         {/* Боковое меню */}
-        <div className={`${!toggle ? "hidden" : "flex"} p-6 bg-[#d9d9d9] absolute top-20 right-0 mx-4 my-16 min-w-[140px] rounded-xl sidebar`}>
+        <div className={`${!toggle ? "hidden" : "flex"} p-6 bg-[#d9d9d9] absolute top-32 right-0 mx-4 my-16 min-w-[140px] rounded-xl sidebar`}>
           <ul className="list-none flex justify-end items-start flex-1 flex-col">
             {navLinks.map((nav, index) => (
               <li
@@ -53,7 +53,7 @@ const Navbar = () => {
                 className={`font-raleway font-medium cursor-pointer text-[16px] ${active === nav.title ? "text-[#FF4000]" : "text-dimBlack"} ${index === navLinks.length - 1 ? "mb-0" : "mb-4"}`}
                 onClick={() => setActive(nav.title)}
               >
-                {nav.isSTR ? <Link to={`${nav.id}`}>{nav.title}</Link> : <a href ={`#${nav.id}`}>{nav.title}</a>}
+                {nav.isSTR ? <Link to={`${nav.id}`}>{nav.title}</Link> : <a href={`#${nav.id}`}>{nav.title}</a>}
               </li>
             ))}
           </ul>
