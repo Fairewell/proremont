@@ -12,6 +12,8 @@ import ImageSlider from "./slider";
 import Plashka from "./plashka_temp";
 import AdvantagesSection from "./Advantages";
 import RequestComponent from "./requestcmpnt";
+import ProjectSlider from "./project_slider"
+import MicroPlashka from "./micro_plashka";
 
 export {
   Navbar,
@@ -28,4 +30,6 @@ export {
   Plashka,
   AdvantagesSection,
   RequestComponent,
+  ProjectSlider,
+  MicroPlashka,
 };
