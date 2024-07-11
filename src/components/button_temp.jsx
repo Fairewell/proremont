@@ -15,8 +15,8 @@ const Button1 = ({ id, title, x = 5, y = 3.5, fontSize = 2, onClick, wi, xi }) =
     color: button.text_color,
     borderRadius: '15px',
     transition: 'background-color 0.3s, color 0.3s',
-    width: wi ? '100%' : '100%', // Set the desired width here
-    height: wi ? '35px' : ''
+    width: wi ? '30%' : '100%', // Set the desired width here
+    height: wi ? '50px' : ''
   });
 
   const handleMouseEnter = () => {
