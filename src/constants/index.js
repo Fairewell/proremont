@@ -1,56 +1,6 @@
 import { slider1, slider2, slider3, people01, people02, people03, facebook, instagram, linkedin, twitter, airbnb, binance, coinbase, dropbox, send, shield, star } from "../assets";
 import { FaVk, FaInstagram, FaTwitter, FaFacebook } from 'react-icons/fa';
 
-export const projects = [
-  {
-    id: 1,
-    comms: "kryto!",
-    stars: 4,
-    floors: "2 этаж",
-    price: "3 600 000",
-    time: 24,
-    person: "ivan, 1000 let",
-    plowad: 102,
-    kvadratura: "10.5м на 8м",
-    path: slider1
-  },
-  {
-    id: 2,
-    comms: "kryto!",
-    stars: 4,
-    floors: "1 этаж",
-    price: "3 600 000",
-    time: "24 дня",
-    person: "ivan, 1000 let",
-    plowad: 102,
-    kvadratura: "10.5м на 8м",
-    path: slider1
-  },
-  {
-    id: 3,
-    comms: "kryto!",
-    stars: 4,
-    floors: "2 этажа",
-    price: "3 600 000",
-    time: "24 дня",
-    person: "ivan, 1000 let",
-    plowad: 102,
-    kvadratura: "10.5м на 8м",
-    path: slider1
-  },
-  {
-    id: 4,
-    comms: "kryto!",
-    stars: 4,
-    floors: 1,
-    price: "3 600 000",
-    time: 24,
-    person: "ivan, 1000 let",
-    plowad: 102,
-    kvadratura: "10.5м на 8м",
-    path: slider1
-  },
-]
 
 export const advantages = [
   {

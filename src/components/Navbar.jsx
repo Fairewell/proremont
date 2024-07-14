@@ -20,11 +20,7 @@ const Navbar = () => {
             className={`transition-all hover:text-[19px] font-raleway font-semibold cursor-pointer text-[16px] hover:text-[#FF4000] hover:font-bold ${active === nav.title ? "text-yellow" : "text-black"} ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
             onClick={() => setActive(nav.title)}
           >
-<<<<<<< HEAD
             {nav.isSTR ? <Link to={`/${nav.id}`}>{nav.title}</Link> : <a href={`#${nav.id}`}>{nav.title}</a>}
-=======
-            {nav.isSTR ? <Link to={`${nav.id}`}>{nav.title}</Link> : <a href={`#${nav.id}`}>{nav.title}</a>}
->>>>>>> 709128051da1599220bf666ed3f4e9d57d0b040a
           </li>
         ))}
       </ul>
@@ -57,11 +53,7 @@ const Navbar = () => {
                 className={`font-raleway font-medium cursor-pointer text-[16px] hover:text-[#FF4000] ${active === nav.title ? "text-[#FF4000]" : "text-dimBlack"} ${index === navLinks.length - 1 ? "mb-0" : "mb-4"}`}
                 onClick={() => setActive(nav.title)}
               >
-<<<<<<< HEAD
                 {nav.isSTR ? <Link to={`/${nav.id}`}>{nav.title}</Link> : <a href={`#${nav.id}`}>{nav.title}</a>}
-=======
-                {nav.isSTR ? <Link to={`${nav.id}`}>{nav.title}</Link> : <a href={`#${nav.id}`}>{nav.title}</a>}
->>>>>>> 709128051da1599220bf666ed3f4e9d57d0b040a
               </li>
             ))}
           </ul>

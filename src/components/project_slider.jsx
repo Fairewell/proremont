@@ -43,7 +43,6 @@ const ProjectSlider = () => {
     return (
         <Slider {...settings}>
             {Array.from({ length: totalContainers }).map((_, index) => (
-<<<<<<< HEAD
                 <div key={index} className={`space-x-4 xs:mx-5 sm:mx-32 mx-64 max-h-96`}>
                     {projects.slice(index * buttonsPerContainer, (index + 1) * buttonsPerContainer).map((proj) => (
                         <Projects key={proj.id} id={proj.id} />
@@ -52,27 +51,6 @@ const ProjectSlider = () => {
             ))}
         </Slider>
     );z
-=======
-                <div key={index} className="flex flex-cols space-x-4 mx-8">
-                    {projects.slice(index * buttonsPerContainer, (index + 1) * buttonsPerContainer).map((proj) => (
-                        <Projects key={proj.id} id={proj.id} />
-                    ))}
-                    <button
-                        type="button"
-                        className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer focus:outline-none"
-                        onClick={handleMoveRight}
-                    >
-                        <img
-                            src={arrownext}
-                            alt="menu"
-                            className="w-[28px] h-[28px] object-contain"
-                        />
-                    </button>
-                </div>
-            ))}
-        </Slider>
-    );
->>>>>>> 709128051da1599220bf666ed3f4e9d57d0b040a
 };
 
 export default ProjectSlider;
