@@ -5,7 +5,7 @@ import Button1 from "./button_temp";
 const Plashka = () => (
   <section className="flex flex-col bg-white">
     <div className="flex justify-center py-6 items-center">
-      <span className="font-raleway font-medium xs:text-xs ys:text-2xl uppercase">
+      <span className="mx-16 font-raleway font-medium xs:text-xs ys:text-2xl uppercase">
         Приглашаем к сотрудничеству бригады и мастеров своего дела
       </span>
       <div className={`flex mx-16`}>
