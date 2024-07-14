@@ -51,7 +51,7 @@ const Calculator = ({ selectedServiceId = 1 }) => {
                         {step.isSwitch ? (
                             <div className='flex flex-col'>
                                 {step.titles.map((option, optionIndex) => (
-                                    <div class="mb-[0.125rem] block min-h-[1.5rem] ps-[1.5rem] py-2">
+                                    <div class="mb-[0.125rem] block min-h-[1.5rem] ps-[1.5rem] py-2 hover:text-[#FF4000] transition-all hover:max-h-full">
                                         <input id={optionIndex}
                                             type="checkbox"
                                             value=""

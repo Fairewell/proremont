@@ -21,13 +21,13 @@ const AdvantagesSection = () => {
         <section className={`advantages-section bg-white bg-${advantages_bg} p-4 md:p-20 max-w-full w-full`}
             style={{ backgroundImage: `url(${advantages_bg})`, backgroundSize: 'cover' }}>
             <h2 className="font-merriweather text-center font-bold mb-4 text-lg md:text-xl">Почему стоит выбрать нас?</h2>
-            <div className={`advantages-list grid grid-flow-row auto-cols-max gap-4 md:justify-center `}>
+            <div className={`advantages-list grid grid-flow-row auto-cols-max gap-4 md:justify-center rounded-xl p-6 bg-gray-50 my-8`}>
                 {groupedAdvantages.map((group, index) => (
                     <div key={index} className="grouped-advantages flex flex-row md:flex-row justify-between xs:gap-4 md:gap-32">
                         {group.map((advantage) => (
                             <div
                                 key={advantage.id}
-                                className={`flex flex-row md:flex-row max-w-full md:max-w-xs font-merriweather advantage-item items-center ${activeAdvantage === advantage.id ? 'active' : ''}`}
+                                className={`mx-5 flex flex-row xs:flex-col md:flex-row max-w-full md:max-w-xs font-merriweather advantage-item items-center ${activeAdvantage === advantage.id ? 'active' : ''}`}
                                 onClick={() => setActiveAdvantage(advantage.id)}
                             >
                                 <img

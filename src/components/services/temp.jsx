@@ -32,7 +32,7 @@ const Temp = ({ selectedServiceId = 1 }) => {
             <div>
                 <ul className="transition-all transition-duration: 400ms;list-none flex flex-row ml-6 transition duration-300 ease-in-out justify-center">
                     {Object.keys(service.titles).map((title, index) => (
-                        <li key={index} onClick={() => handleTitleClick(title)} className={`text-xl font-merriweather m-6 cursor-pointer ${selectedTitle === title ? `text-[#FF4000] font-bold` : "black"} transition duration-300 ease-in-out`}>{service.titles[title]} </li>
+                        <li key={index} onClick={() => handleTitleClick(title)} className={`transition-all hover:text-2xl text-xl font-merriweather m-6 cursor-pointer hover:text-[#FF4000] ${selectedTitle === title ? `text-[#FF4000] font-bold` : "black"}`}>{service.titles[title]} </li>
                     ))}
                     {console.log(service.titles)}
                 </ul>
@@ -41,7 +41,7 @@ const Temp = ({ selectedServiceId = 1 }) => {
                 <div className="transition-all transition-duration: 400ms;mt-2 transition duration-300 ease-in-out">
                     <ul className="flex flex-row list-none ml-6 justify-center">
                         {Object.keys(service.punckts[selectedTitle]).map((punckt, index) => (
-                            <li className={`font-raleway font-semibold m-6 cursor-pointer ${selectedPunct === punckt ? `text-[#FF4000] font-bold` : "black"} transition duration-300 ease-in-out`} onClick={() => handlePuncktClick(punckt)} key={index}>{service.punckts[selectedTitle][punckt]}</li>
+                            <li className={`font-raleway font-semibold m-6 cursor-pointer ${selectedPunct === punckt ? `text-[#FF4000] font-bold` : "black"} transition-all hover:text-xl hover:text-[#FF4000]`} onClick={() => handlePuncktClick(punckt)} key={index}>{service.punckts[selectedTitle][punckt]}</li>
                         ))}
                     </ul>
                     <div className='transition-all transition-duration: 400ms;greet-and-desk flex flex-row justify-center transition duration-300 ease-in-out'>

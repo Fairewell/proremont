@@ -10,7 +10,8 @@ export const calc_arrays = [
                 desk: "Название поможет быстрее понять, что нужно сделать",
                 default_: "Отделка ",
                 isSwitch: false,
-                titles: [{ id: 1, title: "пола" }, { id: 2, title: "стен" }, { id: 3, title: "в доме" }, { id: 4, title: "под ключ" },
+                titles: [
+                    { id: 1, title: "пола" }, { id: 2, title: "стен" }, { id: 3, title: "в доме" }, { id: 4, title: "под ключ" },
                 ],
                 prices: [
                     { price: 0 },
@@ -82,3 +83,4 @@ export const calc_arrays = [
             }]
     }
 ];
+

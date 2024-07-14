@@ -9,6 +9,7 @@ import './index.css';
 import ErrorPage from './components/ErrorPage';
 import ServicePage from './routes/Servicespage';
 import AnimatedPage from './routes/AnimatePage';
+import AboutPage from './routes/About';
 
 const router = createBrowserRouter([
   {
@@ -16,9 +17,17 @@ const router = createBrowserRouter([
     element: <AnimatedPage><Root/></AnimatedPage>,
   },
   {
-    path: "product/",
+    path: "/main",
+    element: <AnimatedPage><Root/></AnimatedPage>,
+  },
+  {
+    path: "/product",
     element: <AnimatedPage><ServicePage /></AnimatedPage>,
   },
+  {
+    path: "/about",
+    element: <AboutPage/>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

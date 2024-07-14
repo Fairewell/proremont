@@ -17,10 +17,10 @@ const Navbar = () => {
         {navLinks.map((nav, index) => (
           <li
             key={nav.id}
-            className={`font-raleway font-semibold cursor-pointer text-[16px] ${active === nav.title ? "text-yellow" : "text-black"} ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
+            className={`transition-all hover:text-[19px] font-raleway font-semibold cursor-pointer text-[16px] hover:text-[#FF4000] hover:font-bold ${active === nav.title ? "text-yellow" : "text-black"} ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
             onClick={() => setActive(nav.title)}
           >
-            {nav.isSTR ? <Link to={`${nav.id}`}>{nav.title}</Link> : <a href ={`#${nav.id}`}>{nav.title}</a>}
+            {nav.isSTR ? <Link to={`/${nav.id}`}>{nav.title}</Link> : <a href={`#${nav.id}`}>{nav.title}</a>}
           </li>
         ))}
       </ul>
@@ -35,7 +35,7 @@ const Navbar = () => {
       </div>
 
       {/* Мобильное меню */}
-      <div className="sm:hidden flex flex-1 justify-end items-center">
+      <div className="sm:hidden flex flex-1 justify-end items-center z-50">
         {/* Кнопка меню */}
         <img
           src={toggle ? close : menu}
@@ -50,10 +50,10 @@ const Navbar = () => {
             {navLinks.map((nav, index) => (
               <li
                 key={nav.id}
-                className={`font-raleway font-medium cursor-pointer text-[16px] ${active === nav.title ? "text-[#FF4000]" : "text-dimBlack"} ${index === navLinks.length - 1 ? "mb-0" : "mb-4"}`}
+                className={`font-raleway font-medium cursor-pointer text-[16px] hover:text-[#FF4000] ${active === nav.title ? "text-[#FF4000]" : "text-dimBlack"} ${index === navLinks.length - 1 ? "mb-0" : "mb-4"}`}
                 onClick={() => setActive(nav.title)}
               >
-                {nav.isSTR ? <Link to={`${nav.id}`}>{nav.title}</Link> : <a href ={`#${nav.id}`}>{nav.title}</a>}
+                {nav.isSTR ? <Link to={`/${nav.id}`}>{nav.title}</Link> : <a href={`#${nav.id}`}>{nav.title}</a>}
               </li>
             ))}
           </ul>

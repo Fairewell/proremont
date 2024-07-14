@@ -12,6 +12,9 @@ import ImageSlider from "./slider";
 import Plashka from "./plashka_temp";
 import AdvantagesSection from "./Advantages";
 import RequestComponent from "./requestcmpnt";
+import AboutParagraph from "./AboutParagraph";
+import CustomScrollbar from "./scrollbar";
+import ProjectSlider from "./project_slider";
 
 export {
   Navbar,
@@ -28,4 +31,7 @@ export {
   Plashka,
   AdvantagesSection,
   RequestComponent,
+  AboutParagraph,
+  CustomScrollbar,
+  ProjectSlider,
 };

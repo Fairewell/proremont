@@ -32,8 +32,8 @@ const RequestComponent = () => {
 
     return (
         <section className={`request-section bg-white p-4 md:p-20 max-w-full w-full`}>
-            <div className={`mx-12 request-list grid grid-flow-row grid-cols-3 gap-4 justify-center`}
-                style={{ maxWidth: '85%', }}>
+            <div className={`mx-2 request-list grid grid-flow-row xs:grid-cols-2 grid-cols-3 gap-4 justify-center rounded-xl p-6 bg-gray-50 my-8`}
+                style={{ maxWidth: '100%', }}>
                 <img
                     src={steps1}
                     alt="menu"
