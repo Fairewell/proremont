@@ -15,6 +15,7 @@ import RequestComponent from "./requestcmpnt";
 import AboutParagraph from "./AboutParagraph";
 import CustomScrollbar from "./scrollbar";
 import ProjectSlider from "./project_slider";
+import Project1 from "./Project";
 
 export {
   Navbar,
@@ -34,4 +35,5 @@ export {
   AboutParagraph,
   CustomScrollbar,
   ProjectSlider,
+  Project1,
 };

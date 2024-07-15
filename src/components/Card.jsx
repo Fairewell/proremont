@@ -6,7 +6,7 @@ const Projects = ({ id }) => {
     const project = projects.find(proj => proj.id === id);
 
     return (
-        <div className="bg-gray-50 rounded-lg overflow-hidden m-5 max-w-xs h-auto">
+        <div className="bg-gray-50 rounded-2xl overflow-hidden m-5 sm:max-w-lg xs:max-w-sm h-auto">
             <img src={project.path} alt="project_image" className="w-full h-auto object-cover rounded-lg" />
             <div className="p-4">
                 <div className="grid grid-cols-2 gap-4">

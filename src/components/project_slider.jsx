@@ -9,48 +9,48 @@ import 'slick-carousel/slick/slick-theme.css';
 const ProjectSlider = () => {
     const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
 
-    var settings = {
+    const settings = {
         dots: true,
-        infinite: false,
+        infinite: true,
         speed: 500,
         slidesToShow: 2,
         slidesToScroll: 1,
-        responsive: [{
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 1
-            }
-        }, {
-            breakpoint: 650,
-            settings: {
-                initialSlide: 1,
-                slidesToShow: 1
-            }
-        }]
-    };
-
-    const buttonsPerContainer = 2; // Number of buttons in each container
-    const totalContainers = Math.ceil(projects.length / buttonsPerContainer);
-
-    const handleMoveLeft = () => {
-        setSelectedButtonIndex(prevIndex => (prevIndex > 0 ? prevIndex - 1 : totalContainers - 1));
-    };
-
-    const handleMoveRight = () => {
-        setSelectedButtonIndex(prevIndex => (prevIndex < totalContainers - 1 ? prevIndex + 1 : 0));
-    };
+        nextArrow: <img src={arrownext} alt="Next" className="w-[28px] h-[28px] object-contain" />,
+        prevArrow: <img src={arrowback} alt="Prev" className="w-[28px] h-[28px] object-contain" />,
+        responsive: [{ 
+            breakpoint: 1024, 
+            settings: { 
+                slidesToShow: 2 
+            } 
+        }, { 
+            breakpoint: 650, 
+            settings: { 
+                initialSlide: 1, 
+                slidesToShow: 1 
+            } 
+        }] 
+    };  
 
     return (
-        <Slider {...settings}>
-            {Array.from({ length: totalContainers }).map((_, index) => (
-                <div key={index} className={`space-x-4 xs:mx-5 sm:mx-32 mx-64 max-h-96`}>
-                    {projects.slice(index * buttonsPerContainer, (index + 1) * buttonsPerContainer).map((proj) => (
+        <section id='features' className='bg-white p-4 md:p-20 max-w-full w-full'>
+        <h1 className='flex justify-center text-center xs:text-xl xs:hover:text-2xl sm:hover:text-4xl sm:text-3xl font-merriweather m-6 transition-all duration-300 ease-in-out md-16'>Посмотрите какие проекты 
+        мы сделали</h1>
+        <div className='my-16'>
+            <Slider {...settings}>
+                <div className={`space-x-4`}>
+                    {projects.slice(0, 2).map((proj) => (
                         <Projects key={proj.id} id={proj.id} />
                     ))}
                 </div>
-            ))}
-        </Slider>
-    );z
+                <div className={`space-x-4`}>
+                    {projects.slice(2).map((proj) => (
+                        <Projects key={proj.id} id={proj.id} />
+                    ))}
+                </div>
+            </Slider>
+        </div>
+    </section>
+    );
 };
 
 export default ProjectSlider;

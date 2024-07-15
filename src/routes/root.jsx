@@ -1,6 +1,6 @@
 import styles from "../style";
 import { CTA, Footer, Navbar, Stats, Testimonials, Hero, ImageSlider, Plashka, AdvantagesSection, RequestComponent, 
-    AboutParagraph, CustomScrollbar, ProjectSlider } from "../components";
+    AboutParagraph, CustomScrollbar, ProjectSlider, Project1 } from "../components";
 import { sliders_img } from "../constants";
 
 const Root = () => (
