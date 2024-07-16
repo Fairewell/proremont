@@ -62,13 +62,13 @@ const RequestComponent = () => {
                     className={`w-[${window.innerWidth / i}] h-auto object-contain`}
 
                 />
-                <div className='flex flex-wrap'>
+                <form className='flex flex-wrap'>
                 <input type="text" id="name" className="font-raleway font-semibold bg-[#D9D9D9] text-black text-x rounded-2xl focus: xs:text-sm w-full sm:p-4 xs:p-2 sm:my-4 xs:my-2" placeholder={'Введите ФИО...'} required />
                 <InputMask mask="+7 999 999 99 99" maskChar={null}>
                     {() => <input type="tel" name="floating_phone" id="floating_phone" className="font-raleway lining-nums font-semibold bg-[#D9D9D9] text-black xs:text-sm rounded-2xl focus: w-full sm:p-4 xs:p-2 sm:my-4 xs:my-2" placeholder={'Введите Номер телефона..'} required />}
                 </InputMask>
                 <Button1 title="submit" x={4} y={2} />
-                </div>
+                </form>
             </div>
         </section>
     );
