@@ -49,12 +49,9 @@ const ButtonSlider = () => {
     const [selectedServiceId, setSelectedServiceId] = useState(0); // Initial selected service ID
 
     const handleButtonClick = (title) => {
-        console.log("   BUTTON W/ TITLE: " + title + " WAS CLICKED");
         selectedService = services.find((service) => service.name === title);
         if (selectedService) {
             setSelectedServiceId(selectedService.id);
-            console.log("   selectedID: " + selectedService.id);
-            console.log("   selectedTITLE: " + selectedService.title);
         }
     };
 

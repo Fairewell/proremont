@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { services_info } from '../../constants/services_info';
 import ImageSlider from '../slider';
 
-const Temp = ({ selectedServiceId = 1 }) => {
-    const [selectedPunct, setSelectedPunct] = useState('punckt1');
-    const [selectedTitle, setSelectedTitle] = useState('title1');
+const Temp = ({ selectedServiceId = 1, title = 'title1', punckt = 'punckt1' }) => {
+    const [selectedPunct, setSelectedPunct] = useState(title);
+    const [selectedTitle, setSelectedTitle] = useState(punckt);
 
     useEffect(() => {
-        console.log('ID has changed:', selectedServiceId);
         // Perform actions when ID changes
+        setSelectedPunct(punckt);
+        setSelectedTitle(title);
     }, [selectedServiceId]);
 
     const service = services_info.find(service => service.id === selectedServiceId);
@@ -19,12 +20,10 @@ const Temp = ({ selectedServiceId = 1 }) => {
 
     const handleTitleClick = (title) => {
         setSelectedTitle(title);
-        console.log(title);
     };
 
     const handlePuncktClick = (punckt) => {
         setSelectedPunct(punckt);
-        console.log(punckt);
     };
 
     return (
@@ -34,7 +33,6 @@ const Temp = ({ selectedServiceId = 1 }) => {
                     {Object.keys(service.titles).map((title, index) => (
                         <li key={index} onClick={() => handleTitleClick(title)} className={`transition-all hover:text-2xl text-xl font-merriweather m-6 cursor-pointer hover:text-[#FF4000] ${selectedTitle === title ? `text-[#FF4000] font-bold` : "black"}`}>{service.titles[title]} </li>
                     ))}
-                    {console.log(service.titles)}
                 </ul>
             </div>
             <div>
@@ -45,16 +43,21 @@ const Temp = ({ selectedServiceId = 1 }) => {
                         ))}
                     </ul>
                     <div className='transition-all transition-duration: 400ms;greet-and-desk flex flex-row justify-center transition duration-300 ease-in-out'>
-                        <p className='font-merriweather m-6 transition duration-300 ease-in-out'>{service.greetings[selectedTitle][selectedPunct]}</p>
-                        <p className='font-merriweather m-6 transition duration-300 ease-in-out'>{service.desckriptions[selectedTitle][selectedPunct]}</p>
+                        <p className='font-raleway xs:text-[12px] sm:text-[15px] font-medium m-6 max-w-sm transition duration-300 ease-in-out'>{service.greetings[selectedTitle][selectedPunct]}</p>
+                        <p className='font-raleway xs:text-[12px] sm:text-[15px] font-medium m-6 max-w-sm transition duration-300 ease-in-out'>{service.desckriptions[selectedTitle][selectedPunct]}</p>
                     </div>
                 </div>
-            </div>
-            {console.log(service.photos[selectedTitle][selectedPunct].sliders_img)}
-            <ImageSlider sliders_img={service.photos[selectedTitle][selectedPunct].sliders_img} />
+            </div> 
+            {service.photos[selectedTitle][selectedPunct] ? (
+                <>
+                    <ImageSlider sliders_img={service.photos[selectedTitle][selectedPunct].sliders_img} />
+                </>
+                    ) : (
+                        <ImageSlider sliders_img={service.photos['title1']['punckt1'].sliders_img} />
+                    )
+            }
         </div>
     );
 };
 
 export default Temp;
-//<ImageSlider sliders_img={service.photos[selectedTitle][selectedPunct]} />

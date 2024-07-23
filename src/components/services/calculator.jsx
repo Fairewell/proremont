@@ -5,12 +5,37 @@ import Datepicker from "react-tailwindcss-datepicker";
 import formatDate from './FUNC_formater';
 import formatNumbers from './FUNC_numberformater';
 import TableComponent from './Table';
+import InputMask from 'react-input-mask';
+import Button1 from '../button_temp';
 
 const Calculator = ({ selectedServiceId = 1 }) => {
+    // Состояние для хранения значения ввода
     const [inputValue, setInputValue] = useState('');
+
+    // Состояние для хранения выбранных опций на каждом шаге
     const [selectedOptions, setSelectedOptions] = useState([]);
+
+    // Состояние для отслеживания текущего шага
     const [currentStep, setCurrentStep] = useState(0);
+
+    // Состояние для управления активностью компонента
     const [active, setActive] = useState(true);
+
+    // Состояние для хранения имени пользователя
+    const [name, setName] = useState('');
+
+    // Состояние для хранения номера телефона пользователя
+    const [phone, setPhone] = useState('');
+
+    // Обработчик изменения имени
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+    };
+
+    // Обработчик изменения номера телефона
+    const handlePhoneChange = (e) => {
+        setPhone(e.target.value);
+    };
 
     const styles = { 
         step_content_: { 
@@ -32,7 +57,10 @@ const Calculator = ({ selectedServiceId = 1 }) => {
                         selectedOption.price
     */
 
+    // Состояние для хранения выбранных пользователем опций
     const [userChoices, setUserChoices] = useState([]);
+
+    // Состояние для хранения начальной даты
     const [startDate, setStartDate] = useState('');
 
     /*
@@ -40,53 +68,120 @@ const Calculator = ({ selectedServiceId = 1 }) => {
                 value - dataformat
     */
 
+    // Состояние для хранения значений датапикера
     const [value, setValue] = useState({
         startDate: new Date(),
         endDate: new Date().setMonth(11)
     });
 
+    // Обработчик клика для изменения активности компонента
     const handleActiveClick = () => {
         active ? setActive(false) : setActive(true);
     };
 
+    // Обработчик изменения значения датапикера
     const handleValueChange = (newValue) => {
-        console.log("newValue:", newValue);
         setValue(newValue);
     }
+
+    // Функция для архивирования текущего состояния
+    const ArchivateState = () => {
+        const archived_name = name;
+        const archived_phone = phone;
+        const archived_title = inputValue;
+        const archived_choices = userChoices;
+        return { archived_name, archived_phone, archived_title, archived_choices };
+    }
+
+    // Обработчик клика по кнопке отправки
+    const handleSubmitButton = () => {
+        const { archived_name, archived_phone, archived_title, archived_choices } = ArchivateState();
+        const request = {
+            fio: archived_name,
+            nomer_telefona: archived_phone,
+            email: "example@example.com", // Замените на реальный email
+            type: 0,
+            date: "23.01.24",
+            zayavka_status: 0,
+            comment: "",
+            calculator: [
+                {
+                    title: archived_title,
+                    all_price: "10000000", // Замените на реальную цену
+                    selected_products: archived_choices.map(choice => ({
+                        title: choice.title,
+                        price: choice.price
+                    }))
+                }
+            ]
+        };
+    
+        fetch('/.netlify/functions/submit-request', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Success:', data);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+          
+    };
+    
+
+    // Получение данных сервиса по выбранному ID
     const serviceData = calcArrays.find(service => service.id === selectedServiceId);
 
+    /* ЕСЛИ ВЫБРАННЫЙ ID СЕРВИСА СУЩЕСТВУЕТ И ДАННЫЕ СЕРВИСА СОДЕРЖАТ ЗАГОЛОВОК */
     if (selectedServiceId && serviceData && typeof serviceData.title === 'string') {
+        // Обработчик изменения опции
         const handleOptionChange = (optionIndex) => {
             const newSelectedOptions = [...selectedOptions];
             newSelectedOptions[currentStep] = serviceData.steps[currentStep].prices[optionIndex].price;
             setSelectedOptions(newSelectedOptions);
         };
 
+        // Обработчик перехода к следующему шагу
         const handleNextStep = () => {
             setSelectedOptions([]); // Reset selectedOptions when moving to the next step
             setCurrentStep(currentStep + 1);
         };
 
+        // Обработчик возврата к предыдущему шагу
         const handlePreviousStep = () => {
             setCurrentStep(currentStep - 1);
         };
 
+        // Функция для вычисления общей стоимости
         const calculateTotal = () => {
             return userChoices.reduce((total, choice) => total + choice.price, 0);
         };
 
+        // Обработчик клика по кнопке опции
         const handleButtonClick = (title, price) => {
-            console.log("btn clk. title: " + title);
-            var newtitle = inputValue + " " + title;
-            setInputValue(newtitle);
             setUserChoices([...userChoices, { title, price }]);
-            console.log(userChoices);
         };
 
+        // Обработчик клика по кнопке заголовка
+        const handleTitleButtonClick = (name) => {
+            var newtitle = inputValue + " " + name;
+            setInputValue(newtitle);
+        }
+
+        // Обработчик изменения значения ввода
+        const handleInputChange = (e) => {
+            setInputValue(e.target.value);
+        };
+
+        /* ЕСЛИ ТЕКУЩИЙ ШАГ НЕ КОНЕЦ ДЛИННЫ ТО: */
         if (currentStep < serviceData.steps.length + 1) {
             const step = serviceData.steps[currentStep];
             if (inputValue === '') {
-                console.log('WARN:37 stroke');
                 setInputValue(step.default_);
             }
 
@@ -97,6 +192,7 @@ const Calculator = ({ selectedServiceId = 1 }) => {
                         <h2 className='font-raleway justify-end text-gray-500 text-l font-semibold my-2'>шаг {currentStep + 1} из {serviceData.steps.length + 1}</h2>
                     </p>
                     
+                    {/* ЕСЛИ ТЕКУЩИЙ ШАГ ЯВЛЯЕТСЯ ПОСЛЕДНИМ ШАГОМ */}
                     {currentStep === serviceData.steps.length && (
                         <div>
                             <span className='font-raleway text-black text-2xl font-bold mb-4'>DATAPICKER</span>
@@ -110,12 +206,19 @@ const Calculator = ({ selectedServiceId = 1 }) => {
                         </div>
                     )}
 
+                    {/* ЕСЛИ ТЕКУЩИЙ ШАГ НЕ ЯВЛЯЕТСЯ ПОСЛЕДНИМ ШАГОМ */}
                     {currentStep !== serviceData.steps.length && (
                         <div>
                             <span className='font-raleway text-black text-2xl font-bold mb-4'>{step.title}</span>
                             <div className='mb-4'>
                                 {step.isSwitch ? (console.log("haha")) : (
-                                    <input type="text" id="default-input" className="font-raleway font-semibold bg-[#D9D9D9] text-black text-x rounded-2xl focus: w-full p-4 my-4" defaultValue={inputValue} required />
+                                    <input type="text" 
+                                    id="default-input" 
+                                    className="font-raleway font-semibold bg-[#D9D9D9] text-black text-x rounded-2xl focus: w-full p-4 my-4" 
+                                    value={inputValue}
+                                    onChange={handleInputChange}
+                                    required
+                                    />
                                 )}
                                 <p className='font-raleway my-2'>{step.desk}</p>
                                 {step.isSwitch ? (
@@ -146,7 +249,7 @@ const Calculator = ({ selectedServiceId = 1 }) => {
                                                 key={option.id}
                                                 className={`bg-[#D9D9D9] px-4 p-1 m-1 border rounded-3xl 
                                                     ${selectedOptions[currentStep] === step.prices[optionIndex].price ? 'border-blue-500 bg-blue-100' : 'border-gray-300'}`}
-                                                onClick={() => handleButtonClick(option.title, option.price)}
+                                                onClick={() => handleTitleButtonClick(option.title)}
                                             >
                                                 {option.title}
                                             </button>
@@ -177,37 +280,12 @@ const Calculator = ({ selectedServiceId = 1 }) => {
                 </div>
             );
         } else {
+            /* ЕСЛИ ТЕКУЩИЙ ШАГ КОНЕЦ ДЛИННЫ ТО: */
             return (
-                /**
-                 *  <div key={step.id} className={`rounded-xl p-6 bg-gray-50 my-8 ${step.id === activeStepId ? 'open' : ''}`}>
-                        <div className="flex flex-wrap">
-                            <span className="xs:text-[24px] text-[36px] font-raleway font-bold transition-all transition-duration-400ms flex flex-row transition duration-300 ease-in-out">
-                                {step.title}
-                            </span>
-                            <button
-                                type="button"
-                                className="transition-all hover:text-4xl lining-nums text-[#FF4400] text-3xl z-30 flex h-full mx-4 cursor-pointer focus:outline-none"
-                                onClick={() => handleActiveClick(step.id)}
-                            >
-                                {activeStepId === step.id ? '-' : '+'}
-                            </button>
-                        </div>
-                        <span className="font-raleway font-semibold mt-5">{step.desk}</span>
-                        <div className={`step-content_${activeStepId === step.id ? 'open' : ''}`} style={activeStepId === step.id ? styles.step_content_open : styles.step_content_}>
-                            {step.titles.map((subStep) => (
-                                <div key={subStep.id} className="my-2 ml-4">
-                                    <p className="font-raleway font-medium my-2">{subStep.title}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                 * 
-                 * 
-                 */
                 <div className='rounded-xl p-6 bg-gray-50 my-8'>
                     <div className="flex flex-wrap">
                             <span className="xs:text-[21px] text-[36px] font-raleway font-bold transition-all transition-duration-400ms flex flex-row transition duration-300 ease-in-out">
-                                {serviceData.title}
+                                {inputValue}
                             </span>
                             <button
                                 type="button"
@@ -217,18 +295,37 @@ const Calculator = ({ selectedServiceId = 1 }) => {
                                 {active === true ? '-' : '+'}
                             </button>
                         </div>
-                    <div className={`step-content_${active === true ? 'open' : ''}`} style={active === true ? styles.step_content_open : styles.step_content_}>
+                    <div className={`step-content_${active === true ? 'open' : ''}`}
+                     style={active === true ? styles.step_content_open : styles.step_content_}>
                         <p className='text-base font-medium font-raleway lining-nums mx-2 my-2'>Дата начала: {formatDate(value.startDate)}</p>
                         <p className='text-base font-medium font-raleway lining-nums mx-2 my-2'>Дата окончания: {formatDate(value.endDate)}</p>
                         <p className='text-base font-medium font-raleway lining-nums mx-2 my-2'>Выбранные опции:</p>
                         <TableComponent userChoices={userChoices}/>
-                        {}
                         <p className='text-lg font-semibold font-raleway lining-nums mx-12 my-4 text-right'>Итого: {formatNumbers(calculateTotal())}</p>
+                        <form className='flex flex-wrap'>
+                            <input type="text" id="name" className="font-raleway font-semibold bg-[#D9D9D9] text-black 
+                            text-x rounded-2xl focus: xs:text-sm w-full sm:p-4 xs:p-2 sm:my-4 xs:my-2" 
+                            placeholder={'Введите ФИО...'} value={name} onChange={handleNameChange} required />
+                            <InputMask mask="+7 999 999 99 99" maskChar={null} value={phone} onChange={handlePhoneChange}>
+                                {() => (
+                                    <input
+                                        type="tel"
+                                        name="floating_phone"
+                                        id="floating_phone" 
+                                        className="font-raleway lining-nums font-semibold bg-[#D9D9D9] text-black xs:text-sm rounded-2xl focus: w-full sm:p-4 xs:p-2 sm:my-4 xs:my-2" 
+                                        placeholder={'Введите Номер телефона..'} 
+                                        required 
+                                    />
+                                )}
+                            </InputMask>
+                            <Button1 title="submit" x={4} y={2} onClick={handleSubmitButton} />
+                        </form>
                     </div>
                 </div>
             );
         }
     } else {
+        /* ЕСЛИ ВЫБРАННЫЙ ID СЕРВИСА НЕ СУЩЕСТВУЕТ ИЛИ ДАННЫЕ СЕРВИСА НЕ СОДЕРЖАТ ЗАГОЛОВОК */
         return <div className='transition-all transition-duration: 400ms; m-8 text-2xl color-orange font-raleway font-semibold flex flex-row justify-center text-center'>Извините, но калькулятор не работает с данными видами работ!<br />Спасибо за понимание!</div>;
     }
 };

@@ -23,12 +23,13 @@ const CustomScrollbar = () => {
                     border-radius: 5px;
                     background-color: #E9E9E9;
                     border: 2px solid #FFFFFF;
+                    transition: background-color 0.3s ease; /* Анимация смены цвета при наведении */
                 }
                 *::-webkit-scrollbar-thumb:hover {
-                    background-color: #E9E9E9;
+                    background-color: #FF4000;
                 }
                 *::-webkit-scrollbar-thumb:active {
-                    background-color: #E9E9E9;
+                    background-color: #FF4000;
                 }
             `}
         </style>
