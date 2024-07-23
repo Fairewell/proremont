@@ -101,9 +101,9 @@ const Calculator = ({ selectedServiceId = 1 }) => {
             nomer_telefona: archived_phone,
             email: "example@example.com", // Замените на реальный email
             type: 0,
-            date: "23.01.24",
+            date: formatDate(value.startDate),
             zayavka_status: 0,
-            comment: "",
+            comment: "Выбранная дата окончания: " + formatDate(value.endDate),
             calculator: [
                 {
                     title: archived_title,
