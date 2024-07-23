@@ -107,7 +107,7 @@ const Calculator = ({ selectedServiceId = 1 }) => {
             calculator: [
                 {
                     title: archived_title,
-                    all_price: formatNumbers(calculateTotal), // Замените на реальную цену
+                    all_price: formatNumbers(calculateTotal()), // Замените на реальную цену
                     selected_products: archived_choices.map(choice => ({
                         title: choice.title,
                         price: choice.price
