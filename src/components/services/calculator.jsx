@@ -121,7 +121,7 @@ const Calculator = ({ selectedServiceId = 1 }) => {
             ]
         };
     
-        fetch('..../netlify/functions/submit-request', {
+        fetch('/.netlify/functions/submit-request', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
