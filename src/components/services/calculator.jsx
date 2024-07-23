@@ -107,7 +107,7 @@ const Calculator = ({ selectedServiceId = 1 }) => {
             calculator: [
                 {
                     title: archived_title,
-                    all_price: "10000000", // Замените на реальную цену
+                    all_price: formatNumbers(calculateTotal), // Замените на реальную цену
                     selected_products: archived_choices.map(choice => ({
                         title: choice.title,
                         price: choice.price
@@ -121,11 +121,11 @@ const Calculator = ({ selectedServiceId = 1 }) => {
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(request)
           })
           .then(response => response.json())
-          .then(data => {
-            console.log('Success:', data);
+          .then(request => {
+            console.log('Success:', request);
           })
           .catch((error) => {
             console.error('Error:', error);
