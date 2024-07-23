@@ -93,6 +93,11 @@ const Calculator = ({ selectedServiceId = 1 }) => {
         return { archived_name, archived_phone, archived_title, archived_choices };
     }
 
+    // Функция для вычисления общей стоимости
+    const calculateTotal = () => {
+        return userChoices.reduce((total, choice) => total + choice.price, 0);
+    };
+
     // Обработчик клика по кнопке отправки
     const handleSubmitButton = () => {
         const { archived_name, archived_phone, archived_title, archived_choices } = ArchivateState();
@@ -157,10 +162,6 @@ const Calculator = ({ selectedServiceId = 1 }) => {
             setCurrentStep(currentStep - 1);
         };
 
-        // Функция для вычисления общей стоимости
-        const calculateTotal = () => {
-            return userChoices.reduce((total, choice) => total + choice.price, 0);
-        };
 
         // Обработчик клика по кнопке опции
         const handleButtonClick = (title, price) => {
