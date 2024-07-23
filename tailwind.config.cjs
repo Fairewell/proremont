@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html", "./src/**/*.{js,jsx}", "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js"],
+  content: ["./index.html", "./src/**/*.{js,jsx}", "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js", 'node_modules/preline/dist/*.js', ],
   mode: "jit",
   theme: {
     extend: {
@@ -38,6 +38,7 @@ module.exports = {
     },
   },
   plugins: [
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require('preline/plugin'),
 ]
 };

@@ -1,7 +1,7 @@
 {
-  "name": "jsxgames",
+  "name": "proremont_",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.2.9",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,8 +15,10 @@
     "flowbite": "^2.4.1",
     "framer-motion": "^11.2.13",
     "localforage": "^1.10.0",
+    "magicui-cli": "^0.1.6",
     "match-sorter": "^6.3.4",
     "mongodb": "^6.8.0",
+    "preline": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",
@@ -37,5 +39,20 @@
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.6",
     "vite": "^3.2.10"
-  }
+  },
+  "description": "site of PROREMONT",
+  "main": "vite.config.js",
+  "repository": {
+    "type": "git",
+    "url": "proremont"
+  },
+  "keywords": [
+    "site",
+    "tailwind",
+    "react",
+    "proremont",
+    "pro"
+  ],
+  "author": "Vlad Alsaev, Kulpanov Mergen",
+  "license": "ISC"
 }

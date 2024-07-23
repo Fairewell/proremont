@@ -19,12 +19,12 @@ export async function handler(event, context) {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Success' }),
+      body: JSON.stringify({ message: 'Success, status 400' }),
     };
   } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to connect to MongoDB' }),
+      body: JSON.stringify({ error: 'Failed to connect to MongoDB, status 500 - Internal Server Error.' }),
     };
   } finally {
     await client.close();
