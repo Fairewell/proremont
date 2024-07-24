@@ -7,11 +7,9 @@ import formatNumbers from './FUNC_numberformater';
 import TableComponent from './Table';
 import InputMask from 'react-input-mask';
 import Button1 from '../button_temp';
-import sqlite3 from 'sqlite3';
 
 const Calculator = ({ selectedServiceId = 1 }) => {
     // Открытие базы данных SQLite
-    const db = new sqlite3.Database('database.db');
 
     // Состояние для хранения значения ввода
     const [inputValue, setInputValue] = useState('');
@@ -112,7 +110,7 @@ const Calculator = ({ selectedServiceId = 1 }) => {
             type: 0,
             date: formatDate(value.startDate),
             zayavka_status: 0,
-            comment: "Выбранная дата окончания: " + formatDate(value.endDate),
+            comment: "",
             calculator: [
                 {
                     title: archived_title,
@@ -124,32 +122,22 @@ const Calculator = ({ selectedServiceId = 1 }) => {
                 }
             ]
         };
-    
-        // Сохранение заявки в SQLite
-        db.serialize(() => {
-            db.run(
-                `INSERT INTO requests (fio, phone, email, type, date, status, comment, title, total_price, selected_products)
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-                [
-                    request.fio,
-                    request.nomer_telefona,
-                    request.email,
-                    request.type,
-                    request.date,
-                    request.zayavka_status,
-                    request.comment,
-                    request.calculator[0].title,
-                    request.calculator[0].all_price,
-                    JSON.stringify(request.calculator[0].selected_products)
-                ],
-                function(err) {
-                    if (err) {
-                        return console.error(err.message);
-                    }
-                    console.log(`Заявка добавлена с ID ${this.lastID}`);
-                }
-            );
-        });
+
+        fetch('/.netlify/functions/submit-request', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(request)
+          })
+          .then(response => response.json())
+          .then(request => {
+            console.log('Success:', request);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+
     };
     
 
