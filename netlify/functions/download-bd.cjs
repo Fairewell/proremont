@@ -60,4 +60,7 @@ async function saveEntries(request) {
     }
 }
 
-module.exports = saveEntries()
+module.exports = {
+    processEntries: processEntries,
+    saveEntries: saveEntries
+};
