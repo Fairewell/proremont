@@ -3,8 +3,8 @@ const { processEntries, saveEntries } = require('./download-bd.cjs');
 
 async function openDb() {
     try {
-        const {data, data_last_id} = await processEntries();
-        return (data, data_last_id);
+        const data = await processEntries();
+        return data;
     } catch (error) {
         return {
             statusCode: 500,
@@ -24,38 +24,39 @@ exports.handler = async function(event, context) {
     const request = JSON.parse(event.body);
 
     try {
-        const {db, db_last_id} = await openDb();
+        const db = await openDb();
         const { fio, nomer_telefona, email, type, date, zayavka_status, comment, calculator } = request;
         console.log(request);
 
         let new_request;
         if (type === 0) {
-            new_request = db, {
-                "id": db_last_id + 1,
-                "fio": fio,
-                "nomer_telefona": nomer_telefona,
-                "email": email,
-                "type": type,
-                "date": date,
-                "zayavka_status": zayavka_status,
-                "comment": comment,
+            new_request = {
+                id: db.id + 1,
+                fio: fio,
+                nomer_telefona: nomer_telefona,
+                email: email,
+                type: type,
+                date: date,
+                zayavka_status: zayavka_status,
+                comment: comment,
                 calculator
             };
         } else {
-            new_request = db, {
-                "id": db_last_id + 1,
-                "fio": fio,
-                "nomer_telefona": nomer_telefona,
-                "email": email,
-                "type": type,
-                "date": date,
-                "zayavka_status": zayavka_status,
-                "comment": comment
+            new_request = {
+                id: db.id + 1,
+                fio: fio,
+                nomer_telefona: nomer_telefona,
+                email: email,
+                type: type,
+                date: date,
+                zayavka_status: zayavka_status,
+                comment: comment
             };
         }
 
         if (new_request) {
-            var status = saveEntries(new_request);
+            const dataArray = [db, new_request];
+            var status = saveEntries(JSON.stringify(dataArray));
             if (status === 200){
               return {
                 statusCode: 200,
@@ -64,8 +65,8 @@ exports.handler = async function(event, context) {
             }
             else {
               return {
-                statusCode: 500,
-                body: JSON.stringify({ message: error.message, code: error })
+                statusCode: 501,
+                body: JSON.stringify({ message: error.message })
               }
             }
         }

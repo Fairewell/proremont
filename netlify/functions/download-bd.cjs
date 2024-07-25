@@ -4,7 +4,7 @@ const fetch = require('isomorphic-fetch');
 
 const accessToken = process.env.ACCESS_TOKEN;
 const itemID = process.env.ITEM_ID; // json
-const filePath = process.env.ITEM_PATH;
+const filePath = '/request_base.json';
 const dbx = new Dropbox({ accessToken: accessToken, fetch: fetch });
 
 async function processEntries() {
@@ -24,10 +24,11 @@ async function processEntries() {
                     const jsonString = Buffer.from(fileContents, 'binary').toString('utf8');
                     const jsonData = JSON.parse(jsonString);
 
+
                     //console.log(jsonData);
-                    return jsonData, jsonData.id;
+                    return (jsonData);
                 } else {
-                    console.log(entry.name);
+                    //console.log(entry.name);
                 }
             }
         } else {
@@ -38,7 +39,6 @@ async function processEntries() {
     }
 }
 
-module.exports = processEntries()
 
 async function saveEntries(request) {
     try {
@@ -51,7 +51,7 @@ async function saveEntries(request) {
         // Если файл не существует, загружаем новый файл
         if (error.error) {
             await dbx.filesUpload({ path: filePath, contents: request});
-            console.log('File uploaded or updated successfully');
+            console.log('File uploaded or updated ');
             return error;
         } else {
             console.error('Error uploading or updating file:', error);
