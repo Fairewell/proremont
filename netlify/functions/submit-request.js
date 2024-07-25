@@ -1,4 +1,4 @@
-const { open } = require('sqlite');
+
 const { processEntries, saveEntries } = require('./download-bd.cjs');
 
 async function openDb() {
@@ -64,7 +64,6 @@ exports.handler = async function(event, context) {
         };
     } catch (error) {
         // Handle rollback operation using sqliteDb
-        await sqliteDb.run('ROLLBACK');
         return {
             statusCode: 500,
             body: JSON.stringify({ message: error.message }),
