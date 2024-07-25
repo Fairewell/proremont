@@ -104,24 +104,26 @@ const Calculator = ({ selectedServiceId = 1 }) => {
     const handleSubmitButton = () => {
         const { archived_name, archived_phone, archived_title, archived_choices } = ArchivateState();
         const request = {
-            fio: archived_name,
-            nomer_telefona: archived_phone,
+            fio: archived_name, // str
+            nomer_telefona: archived_phone, // str
             email: "example@example.com", // Замените на реальный email
-            type: 0,
-            date: formatDate(value.startDate),
-            zayavka_status: 0,
+            type: 0, // 0 - Заявка с данными из калькулятора, 1 - Без
+            date: formatDate(value.startDate), // str
+            zayavka_status: 0, // 0 - Заявка ждет рассмотрения, 1 - Заявка в работе, 2 - Заявка рассмотрена, 3 - Заявка одобрена, 4 - Заявка Отклонена 
             comment: "",
             calculator: [
                 {
-                    title: archived_title,
-                    all_price: formatNumbers(calculateTotal()), // Замените на реальную цену
+                    title: archived_title, //str
+                    all_price: formatNumbers(calculateTotal()), // str
                     selected_products: archived_choices.map(choice => ({
-                        title: choice.title,
-                        price: choice.price
+                        title: choice.title, //str
+                        price: choice.price  //int
                     }))
                 }
             ]
         };
+
+        console.log(JSON.parse(JSON.stringify(request)));
 
         fetch('/.netlify/functions/submit-request', {
             method: 'POST',

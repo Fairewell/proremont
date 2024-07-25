@@ -1,32 +1,73 @@
-import { MongoClient } from 'mongodb';
+const { open } = require('sqlite');
+const { processEntries, saveEntries } = require('./download-bd.cjs');
 
-export async function handler(event, context) {
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      body: 'Method Not Allowed',
-    };
-  }
-
-  const data = JSON.parse(event.body);
-  const url = 'mongodb+srv://r58hb0qrn9d:FYB-5iP-CDP-HR3@cluster0.dn0ygnt.mongodb.net/';
-  const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
-
-  try {
-    await client.connect();
-    const db = client.db('Proremont');
-    // Выполняем операции с базой данных здесь
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ message: 'Success, status 400' }),
-    };
-  } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to connect to MongoDB, status 500 - Internal Server Error.' }),
-    };
-  } finally {
-    await client.close();
-  }
+async function openDb() {
+    try {
+        const data = await processEntries();
+        return data;
+    } catch (error) {
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: error.message }),
+        };
+    }
 }
+
+exports.handler = async function(event, context) {
+    if (event.httpMethod !== 'POST') {
+        return {
+            statusCode: 405,
+            body: JSON.stringify({ message: 'Method Not Allowed' }),
+        };
+    }
+
+    const request = JSON.parse(event.body);
+
+    try {
+        const db = await openDb();
+        const { fio, nomer_telefona, email, type, date, zayavka_status, comment, calculator } = request;
+        console.log(request);
+
+        let new_request;
+        if (type === 0) {
+            new_request = {
+                "id": db.id + 1,
+                "fio": fio,
+                "nomer_telefona": nomer_telefona,
+                "email": email,
+                "type": type,
+                "date": date,
+                "zayavka_status": zayavka_status,
+                "comment": comment,
+                calculator
+            };
+        } else {
+            new_request = {
+                "id": db.id + 1,
+                "fio": fio,
+                "nomer_telefona": nomer_telefona,
+                "email": email,
+                "type": type,
+                "date": date,
+                "zayavka_status": zayavka_status,
+                "comment": comment
+            };
+        }
+
+        if (new_request) {
+            saveEntries(new_request);
+        }
+
+        return {
+            statusCode: 200,
+            body: JSON.stringify({ message: 'Request saved successfully' }),
+        };
+    } catch (error) {
+        // Handle rollback operation using sqliteDb
+        await sqliteDb.run('ROLLBACK');
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ message: error.message }),
+        };
+    }
+};
