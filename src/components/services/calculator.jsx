@@ -307,7 +307,7 @@ const Calculator = ({ selectedServiceId = 1 }) => {
                         <p className='text-base font-medium font-raleway lining-nums mx-2 my-2'>Выбранные опции:</p>
                         <TableComponent userChoices={userChoices}/>
                         <p className='text-lg font-semibold font-raleway lining-nums mx-12 my-4 text-right'>Итого: {formatNumbers(calculateTotal())}</p>
-                        <form className='flex flex-wrap'>
+                        <form className='flex flex-wrap' netlify>
                             <input type="text" id="name" className="font-raleway font-semibold bg-[#D9D9D9] text-black 
                             text-x rounded-2xl focus: xs:text-sm w-full sm:p-4 xs:p-2 sm:my-4 xs:my-2" 
                             placeholder={'Введите ФИО...'} value={name} onChange={handleNameChange} required />

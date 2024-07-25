@@ -59,7 +59,7 @@ exports.handler = async function(event, context) {
             if (status === 200){
               return {
                 statusCode: 200,
-                body: JSON.stringify({ message: 'Request saved successfully' }),
+                body: JSON.stringify({ message: 'Request saved successfully from saveEntries' }),
             };
             }
             else {
@@ -72,7 +72,7 @@ exports.handler = async function(event, context) {
 
         return {
             statusCode: 200,
-            body: JSON.stringify({ message: 'Request saved successfully' }),
+            body: JSON.stringify({ message: 'Request saved successfully from submit-request' }),
         };
     } catch (error) {
         // Handle rollback operation using sqliteDb
