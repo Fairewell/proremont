@@ -25,7 +25,7 @@ async function processEntries() {
                     const jsonData = JSON.parse(jsonString);
 
                     //console.log(jsonData);
-                    return jsonData;
+                    return jsonData, jsonData.id;
                 } else {
                     console.log(entry.name);
                 }

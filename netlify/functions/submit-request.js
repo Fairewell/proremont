@@ -3,8 +3,8 @@ const { processEntries, saveEntries } = require('./download-bd.cjs');
 
 async function openDb() {
     try {
-        const data = await processEntries();
-        return data;
+        const {data, data_last_id} = await processEntries();
+        return (data, data_last_id);
     } catch (error) {
         return {
             statusCode: 500,
@@ -24,14 +24,14 @@ exports.handler = async function(event, context) {
     const request = JSON.parse(event.body);
 
     try {
-        const db = await openDb();
+        const {db, db_last_id} = await openDb();
         const { fio, nomer_telefona, email, type, date, zayavka_status, comment, calculator } = request;
         console.log(request);
 
         let new_request;
         if (type === 0) {
-            new_request = {
-                "id": db.id + 1,
+            new_request = db, {
+                "id": db_last_id + 1,
                 "fio": fio,
                 "nomer_telefona": nomer_telefona,
                 "email": email,
@@ -42,8 +42,8 @@ exports.handler = async function(event, context) {
                 calculator
             };
         } else {
-            new_request = {
-                "id": db.id + 1,
+            new_request = db, {
+                "id": db_last_id + 1,
                 "fio": fio,
                 "nomer_telefona": nomer_telefona,
                 "email": email,
