@@ -46,13 +46,16 @@ async function saveEntries(request) {
         // Если файл существует, обновляем его
         await dbx.filesUpload({ path: filePath, contents: request, mode: { '.tag': 'overwrite' } });
         console.log('File uploaded or updated successfully');
+        return 200;
     } catch (error) {
         // Если файл не существует, загружаем новый файл
         if (error.error) {
             await dbx.filesUpload({ path: filePath, contents: request});
             console.log('File uploaded or updated successfully');
+            return error;
         } else {
             console.error('Error uploading or updating file:', error);
+            return error;
         }
     }
 }

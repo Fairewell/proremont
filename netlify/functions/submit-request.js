@@ -55,7 +55,19 @@ exports.handler = async function(event, context) {
         }
 
         if (new_request) {
-            saveEntries(new_request);
+            var status = saveEntries(new_request);
+            if (status === 200){
+              return {
+                statusCode: 200,
+                body: JSON.stringify({ message: 'Request saved successfully' }),
+            };
+            }
+            else {
+              return {
+                statusCode: 500,
+                body: JSON.stringify({ message: error.message, code: error })
+              }
+            }
         }
 
         return {
