@@ -16,6 +16,7 @@ import AboutParagraph from "./AboutParagraph";
 import CustomScrollbar from "./scrollbar";
 import ProjectSlider from "./project_slider";
 import Project1 from "./Project";
+import PricesTable from "./PricesTable";
 
 export {
   Navbar,
@@ -36,4 +37,5 @@ export {
   CustomScrollbar,
   ProjectSlider,
   Project1,
+  PricesTable,
 };

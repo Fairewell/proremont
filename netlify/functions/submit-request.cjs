@@ -4,16 +4,18 @@ const { processEntries, saveEntries } = require('./download-bd.cjs');
 async function openDb() {
     try {
         const data = await processEntries();
+        console.log("OPENDB. DATA FROM PROCCESSENTRIES" + data);
         return data;
     } catch (error) {
+        console.log("ERROR IN func.OPENDB");
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: error.message }),
+            body: JSON.stringify({ errorXXX: error.message }),
         };
     }
 }
 
-exports.handler = async function(event, context) {
+exports.handler = async function (event, context) {
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
@@ -25,13 +27,13 @@ exports.handler = async function(event, context) {
 
     try {
         const db = await openDb();
+        console.log("SUBMIT_REQ. BD FROM D_BD: " + db);
         const { fio, nomer_telefona, email, type, date, zayavka_status, comment, calculator } = request;
-        console.log(request);
+        console.log("SUBMIT_REQ. REQUEST FROM CODE: " + request);
 
         let new_request;
         if (type === 0) {
             new_request = {
-                id: db.id + 1,
                 fio: fio,
                 nomer_telefona: nomer_telefona,
                 email: email,
@@ -43,7 +45,6 @@ exports.handler = async function(event, context) {
             };
         } else {
             new_request = {
-                id: db.id + 1,
                 fio: fio,
                 nomer_telefona: nomer_telefona,
                 email: email,
@@ -57,17 +58,18 @@ exports.handler = async function(event, context) {
         if (new_request) {
             const dataArray = [db, new_request];
             var status = saveEntries(JSON.stringify(dataArray));
-            if (status === 200){
-              return {
-                statusCode: 200,
-                body: JSON.stringify({ message: 'Request saved successfully from saveEntries' }),
-            };
+            if (status === 200) {
+                return {
+                    statusCode: 200,
+                    body: JSON.stringify({ message: 'Request saved successfully from saveEntries' }),
+                };
             }
             else {
-              return {
-                statusCode: 501,
-                body: JSON.stringify({ message: error.message })
-              }
+                console.log("ERROR IN func.exports.handler");
+                return {
+                    statusCode: 501,
+                    body: JSON.stringify({ messageEXPORT: error.message })
+                }
             }
         }
 
@@ -76,10 +78,11 @@ exports.handler = async function(event, context) {
             body: JSON.stringify({ message: status }),
         };
     } catch (error) {
+        console.log("ERROR IN func.exports.handler catch(error)");
         // Handle rollback operation using sqliteDb
         return {
             statusCode: 500,
-            body: JSON.stringify({ message: error.message }),
+            body: JSON.stringify({ messageEXPORTERROR: error }),
         };
     }
 };

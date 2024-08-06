@@ -237,48 +237,48 @@ export const extLinks = [
 export const projects = [
   {
     id: 1,
-    comms: "kryto!",
-    stars: 4,
-    floors: "2 этаж",
-    price: "3 600 000",
+    comms: "Одноклассник уговаривал обратиться к своей бригаде для постройки дома за неделю, но я сомневался, нашёл ИП Шалданова, заказал у них, и теперь мой дом готов, в то время как у одноклассника возникли проблемы с его бригадой",
+    stars: 5,
+    floors: "1 этаж",
+    price: "5 600 000",
     time: 24,
-    person: "ivan, 1000 let",
+    person: "Сергей",
     plowad: 102,
-    kvadratura: "10.5м на 8м",
+    kvadratura: "16м на 10м",
     path: slider1
   },
   {
     id: 2,
-    comms: "kryto!",
-    stars: 4,
-    floors: "1 этаж",
-    price: "3 600 000",
+    comms: "ИП Шалданов молодцы! Построили дом хорошо, все аккуратно и чисто. Построенный дом принес много радости в нашу семью. Очень довольна домом. Компания мне показалась очень серьезной. Спасибо вам искреннее!",
+    stars: 5,
+    floors: "2 этаж",
+    price: "13 600 000",
     time: "24 дня",
-    person: "ivan, 1000 let",
+    person: "Татьяна",
     plowad: 102,
-    kvadratura: "10.5м на 8м",
+    kvadratura: "16м на 14м",
     path: slider1
   },
   {
     id: 3,
-    comms: "kryto!",
-    stars: 4,
+    comms: "Спасибо за строительство дома, мы долго искали компанию и не пожалели, нашли вас в интернете, дом построен, и мы очень рады, обязательно порекомендуем вас!",
+    stars: 5,
     floors: "2 этажа",
-    price: "3 600 000",
+    price: "10 100 000",
     time: "24 дня",
-    person: "ivan, 1000 let",
+    person: "Юлия и Алексей",
     plowad: 102,
-    kvadratura: "10.5м на 8м",
+    kvadratura: "15м на 8м",
     path: slider1
   },
   {
     id: 4,
-    comms: "kryto!",
+    comms: "Дом построен, я пишу отзыв в тепле, а на улице -30, строили летом по совету соседа, который уже заказал у вас дом, и я остался доволен качеством работы вашей бригады.",
     stars: 4,
     floors: 1,
     price: "3 600 000",
     time: 24,
-    person: "ivan, 1000 let",
+    person: "Эрдэм",
     plowad: 102,
     kvadratura: "10.5м на 8м",
     path: slider1
@@ -307,6 +307,11 @@ export const navLinks = [
     title: "Компания",
     isSTR: true,
   },
+  {
+    id: "prices",
+    title: 'Прайс',
+    isSTR: true
+  }
 ];
 
 export const features = [

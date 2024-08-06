@@ -11,27 +11,33 @@ import ServicePage from './routes/Servicespage';
 import AnimatedPage from './routes/AnimatePage';
 import AboutPage from './routes/About';
 import NotFoundPage from './routes/NotFound';
+import PricesPage from './routes/PricesPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AnimatedPage><Root/></AnimatedPage>,
+    element: <AnimatedPage><Root /></AnimatedPage>,
     errorElement: <NotFoundPage />,
   },
   {
     path: "/main",
-    element: <AnimatedPage><Root/></AnimatedPage>,
+    element: <AnimatedPage><Root /></AnimatedPage>,
     errorElement: <NotFoundPage />,
   },
   {
     path: "/product",
-    element: <AnimatedPage><ServicePage/></AnimatedPage>,
+    element: <AnimatedPage><ServicePage /></AnimatedPage>,
     errorElement: <NotFoundPage />,
   },
   {
     path: "/about",
-    element: <AboutPage/>,
+    element: <AboutPage />,
     errorElement: <NotFoundPage />,
+  },
+  {
+    path: "/prices",
+    element: <PricesPage />,
+    errorElement: <NotFoundPage />
   },
   {
     errorElement: <NotFoundPage />,

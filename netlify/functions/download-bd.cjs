@@ -18,14 +18,14 @@ async function processEntries() {
                     const downloadResponse = await dbx.filesDownload({ path: entry.path_lower });
                     //console.log("DOWNLOAD RESPONSE: " + JSON.stringify(downloadResponse));
                     const fileContents = downloadResponse.result.fileBinary;
-                   // console.log("FILE CONTENT: " + fileContents);
+                    // console.log("FILE CONTENT: " + fileContents);
 
                     // Convert bytes to string and parse JSON
                     const jsonString = Buffer.from(fileContents, 'binary').toString('utf8');
                     const jsonData = JSON.parse(jsonString);
 
 
-                    //console.log(jsonData);
+                    console.log(jsonData);
                     return (jsonData);
                 } else {
                     //console.log(entry.name);
@@ -50,7 +50,7 @@ async function saveEntries(request) {
     } catch (error) {
         // Если файл не существует, загружаем новый файл
         if (error.error) {
-            await dbx.filesUpload({ path: filePath, contents: request});
+            await dbx.filesUpload({ path: filePath, contents: request });
             console.log('File uploaded or updated ');
             return error;
         } else {

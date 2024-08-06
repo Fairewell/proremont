@@ -22,7 +22,7 @@ const AdvantagesSection = () => {
             <h1 className='flex justify-center text-center xs:text-xl xs:hover:text-2xl sm:hover:text-4xl sm:text-3xl font-merriweather m-6 transition-all duration-300 ease-in-out md-16'>Почему стоит выбрать нас?</h1>
             <div className={`advantages-list xs:grid-cols-1 grid-flow-row auto-cols-max gap-4 md:justify-center rounded-xl py-6 bg-gray-50 my-8`}>
                 {groupedAdvantages.map((group, index) => (
-                    <div key={index} className="grouped-advantages flex flex xs:my-5 xs:flex-col md:flex-row justify-between xs:gap-2 md:gap-24 md:px-12">
+                    <div key={index} className="grouped-advantages flex flex xs:my-5 xs:flex-col md:flex-row justify-between xs:gap-5 md:gap-24 md:px-12">
                         {group.map((advantage) => (
                             <div
                                 key={advantage.id}
@@ -38,7 +38,7 @@ const AdvantagesSection = () => {
                                     />
                                     <div>
                                         <p className="transition-all mt-1 text-sm hover:text-base  font-merriweather text-black">
-                                            {advantage.text}    
+                                            {advantage.text}
                                         </p>
                                     </div>
                                 </div>

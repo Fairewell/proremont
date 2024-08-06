@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html", "./src/**/*.{js,jsx}", "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js", 'node_modules/preline/dist/*.js', ],
+  content: ["./index.html", "./src/**/*.{js,jsx}", "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js", 'node_modules/preline/dist/*.js',],
   mode: "jit",
   theme: {
     extend: {
@@ -18,18 +18,18 @@ module.exports = {
         raleway: ["Raleway", "sans-serif"],
         merriweather: ["Merriweather", "serif"],
       },
-      animation:{
+      animation: {
         fadeIn: 'fadeIn 0.5 ease-in-out',
         keyframes: {
-          fadeIn:{
-            '0%': {opacity: 0},
-            '100%': {opacity: 1},
+          fadeIn: {
+            '0%': { opacity: 0 },
+            '100%': { opacity: 1 },
           }
         }
       }
     },
     screens: {
-      xs: "400px",
+      xs: "350px",
       ss: "620px",
       sm: "768px",
       md: "1060px",
@@ -40,5 +40,5 @@ module.exports = {
   plugins: [
     require('flowbite/plugin'),
     require('preline/plugin'),
-]
+  ]
 };

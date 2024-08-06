@@ -43,7 +43,7 @@ const ButtonSlider = () => {
         ],
     };
     var selectedService = 1;
-    const buttonsPerContainer = 6; // Number of buttons in each container
+    const buttonsPerContainer = 4; // Number of buttons in each container
     const totalContainers = Math.ceil(btns.length / buttonsPerContainer);
     const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
     const [selectedServiceId, setSelectedServiceId] = useState(0); // Initial selected service ID
@@ -67,7 +67,7 @@ const ButtonSlider = () => {
         <>
             <Slider {...settings}>
                 {Array.from({ length: totalContainers }).map((_, index) => (
-                    <div key={index} className="flex space-x-1 sm:space-x-4 xs:space-x-2 m-2 xs:m-8">
+                    <div key={index} className="flex ml-[2rem]">
                         {btns.slice(index * buttonsPerContainer, (index + 1) * buttonsPerContainer).map((button) => (
                             <Button1
                                 key={button.id}
