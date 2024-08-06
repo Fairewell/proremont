@@ -10,7 +10,7 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <nav className="w-full flex py-6 justify-between items-center navbar bg-white p-20">
+    <nav className="w-full flex py-6 justify-between items-center navbar bg-white xs:p-2 p-20">
       <img src={logo} alt="jsxgames" className="w-[240px] h-[32px]" />
 
       <ul className="list-none sm:flex hidden justify-end items-center flex-1 justify-between pl-20 pr-20">
