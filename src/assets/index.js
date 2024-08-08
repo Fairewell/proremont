@@ -35,6 +35,7 @@ import steps3 from "./step-3.svg";
 import steps4 from "./step-4.svg";
 import steps5 from "./step-5.svg";
 import bg_1 from "./bg-1.png";
+import map from "./map.png";
 
 export {
   airbnb,
@@ -74,4 +75,5 @@ export {
   steps4,
   steps5,
   bg_1,
+  map,
 };

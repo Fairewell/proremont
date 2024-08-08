@@ -12,6 +12,7 @@ import AnimatedPage from './routes/AnimatePage';
 import AboutPage from './routes/About';
 import NotFoundPage from './routes/NotFound';
 import PricesPage from './routes/PricesPage';
+import Feedback from './routes/Feedback';
 
 const router = createBrowserRouter([
   {
@@ -40,8 +41,15 @@ const router = createBrowserRouter([
     errorElement: <NotFoundPage />
   },
   {
+    path: '/*',
+    element: <NotFoundPage />,
     errorElement: <NotFoundPage />,
-  }
+  },
+  {
+    path: '/feedback',
+    element: <Feedback />,
+    errorElement: <NotFoundPage />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
