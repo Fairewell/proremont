@@ -43,14 +43,15 @@ const ButtonSlider = () => {
         ],
     };
     var selectedService = 1;
-    const buttonsPerContainer = 4; // Number of buttons in each container
+    const buttonsPerContainer = 6; // Number of buttons in each container
     const totalContainers = Math.ceil(btns.length / buttonsPerContainer);
-    const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
+    const [selectedButtonIndex, setSelectedButtonIndex] = useState(1);
     const [selectedServiceId, setSelectedServiceId] = useState(0); // Initial selected service ID
 
     const handleButtonClick = (title) => {
         selectedService = services.find((service) => service.name === title);
         if (selectedService) {
+            console.log('ID: ' + selectedService.id)
             setSelectedServiceId(selectedService.id);
         }
     };

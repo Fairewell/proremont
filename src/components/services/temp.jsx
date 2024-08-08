@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { services_info } from '../../constants/services_info';
 import ImageSlider from '../slider';
 
-const Temp = ({ selectedServiceId = 1, title = 'title1', punckt = 'punckt1' }) => {
-    const [selectedPunct, setSelectedPunct] = useState(title);
-    const [selectedTitle, setSelectedTitle] = useState(punckt);
+const Temp = ({ selectedServiceId = '1', title = 'title1', punckt = 'punckt1' }) => {
+    const [selectedPunct, setSelectedPunct] = useState('title1');
+    const [selectedTitle, setSelectedTitle] = useState('punckt');
 
     useEffect(() => {
-        // Perform actions when ID changes
-        setSelectedPunct(punckt);
+        selectedServiceId == 0 ? (selectedServiceId = 1) :
+            // Perform actions when ID changes
+            setSelectedPunct(punckt);
         setSelectedTitle(title);
     }, [selectedServiceId]);
 

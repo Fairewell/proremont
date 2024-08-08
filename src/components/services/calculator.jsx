@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { calc_arrays as calcArrays } from '../../constants/calculators_arrays';
 import { services } from '../../constants';
 import Datepicker from "react-tailwindcss-datepicker";
@@ -9,7 +9,6 @@ import InputMask from 'react-input-mask';
 import Button1 from '../button_temp';
 
 const Calculator = ({ selectedServiceId = 1 }) => {
-    // Открытие базы данных SQLite
 
     // Состояние для хранения значения ввода
     const [inputValue, setInputValue] = useState('');
@@ -39,17 +38,17 @@ const Calculator = ({ selectedServiceId = 1 }) => {
         setPhone(e.target.value);
     };
 
-    const styles = { 
-        step_content_: { 
-            maxHeight: 0, 
-            overflow: 'hidden', 
-            transition: 'max-height 0.3s ease', 
-        }, 
-        step_content_open: { 
-            transition: 'max-height 0.3s ease', 
+    const styles = {
+        step_content_: {
+            maxHeight: 0,
+            overflow: 'hidden',
+            transition: 'max-height 0.3s ease',
+        },
+        step_content_open: {
+            transition: 'max-height 0.3s ease',
             maxHeight: '1000px', // Set the maximum height according to your content 
-        }, 
-    }; 
+        },
+    };
 
     /*
         USERCHOICES::
@@ -64,6 +63,15 @@ const Calculator = ({ selectedServiceId = 1 }) => {
 
     // Состояние для хранения начальной даты
     const [startDate, setStartDate] = useState('');
+
+    useEffect(() => {
+        selectedServiceId == 0 ? (selectedServiceId = 1) :
+            // Perform actions when ID changes
+            setInputValue('');
+        setSelectedOptions([]);
+        setCurrentStep(0);
+        setUserChoices([]);
+    }, [selectedServiceId]);
 
     /*
         DATAPICKER::
@@ -128,20 +136,20 @@ const Calculator = ({ selectedServiceId = 1 }) => {
         fetch('/.netlify/functions/submit-request', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(request)
-          })
-          .then(response => response.json())
-          .then(request => {
-            console.log('Success:', request);
-          })
-          .catch((error) => {
-            console.error('Error:', error);
-          });
+        })
+            .then(response => response.json())
+            .then(request => {
+                console.log('Success:', request);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
 
     };
-    
+
 
     // Получение данных сервиса по выбранному ID
     const serviceData = calcArrays.find(service => service.id === selectedServiceId);
@@ -196,7 +204,7 @@ const Calculator = ({ selectedServiceId = 1 }) => {
                         <h2 className='font-raleway text-gray-500 text-l font-semibold my-2'>{serviceData.title}</h2>
                         <h2 className='font-raleway justify-end text-gray-500 text-l font-semibold my-2'>шаг {currentStep + 1} из {serviceData.steps.length + 1}</h2>
                     </p>
-                    
+
                     {/* ЕСЛИ ТЕКУЩИЙ ШАГ ЯВЛЯЕТСЯ ПОСЛЕДНИМ ШАГОМ */}
                     {currentStep === serviceData.steps.length && (
                         <div>
@@ -217,12 +225,12 @@ const Calculator = ({ selectedServiceId = 1 }) => {
                             <span className='font-raleway text-black text-2xl font-bold mb-4'>{step.title}</span>
                             <div className='mb-4'>
                                 {step.isSwitch ? (console.log("haha")) : (
-                                    <input type="text" 
-                                    id="default-input" 
-                                    className="font-raleway font-semibold bg-[#D9D9D9] text-black text-x rounded-2xl focus: w-full p-4 my-4" 
-                                    value={inputValue}
-                                    onChange={handleInputChange}
-                                    required
+                                    <input type="text"
+                                        id="default-input"
+                                        className="font-raleway font-semibold bg-[#D9D9D9] text-black text-x rounded-2xl focus: w-full p-4 my-4"
+                                        value={inputValue}
+                                        onChange={handleInputChange}
+                                        required
                                     />
                                 )}
                                 <p className='font-raleway my-2'>{step.desk}</p>
@@ -230,7 +238,7 @@ const Calculator = ({ selectedServiceId = 1 }) => {
                                     <div className='flex flex-col'>
                                         {step.titles.map((option, optionIndex) => (
                                             <div key={optionIndex} className="mb-[0.125rem] block min-h-[1.5rem] ps-[1.5rem] py-2 hover:text-[#FF4000] transition-all hover:max-h-full">
-                                                <input 
+                                                <input
                                                     key={currentStep}
                                                     id={optionIndex}
                                                     type="checkbox"
@@ -289,37 +297,37 @@ const Calculator = ({ selectedServiceId = 1 }) => {
             return (
                 <div className='rounded-xl p-6 bg-gray-50 my-8'>
                     <div className="flex flex-wrap">
-                            <span className="xs:text-[21px] text-[36px] font-raleway font-bold transition-all transition-duration-400ms flex flex-row transition duration-300 ease-in-out">
-                                {inputValue}
-                            </span>
-                            <button
-                                type="button"
-                                className="transition-all hover:text-4xl lining-nums text-[#FF4400] text-3xl z-30 flex h-full mx-4 cursor-pointer focus:outline-none"
-                                onClick={() => handleActiveClick()}
-                            >
-                                {active === true ? '-' : '+'}
-                            </button>
-                        </div>
+                        <span className="xs:text-[21px] text-[36px] font-raleway font-bold transition-all transition-duration-400ms flex flex-row transition duration-300 ease-in-out">
+                            {inputValue}
+                        </span>
+                        <button
+                            type="button"
+                            className="transition-all hover:text-4xl lining-nums text-[#FF4400] text-3xl z-30 flex h-full mx-4 cursor-pointer focus:outline-none"
+                            onClick={() => handleActiveClick()}
+                        >
+                            {active === true ? '-' : '+'}
+                        </button>
+                    </div>
                     <div className={`step-content_${active === true ? 'open' : ''}`}
-                     style={active === true ? styles.step_content_open : styles.step_content_}>
+                        style={active === true ? styles.step_content_open : styles.step_content_}>
                         <p className='text-base font-medium font-raleway lining-nums mx-2 my-2'>Дата начала: {formatDate(value.startDate)}</p>
                         <p className='text-base font-medium font-raleway lining-nums mx-2 my-2'>Дата окончания: {formatDate(value.endDate)}</p>
                         <p className='text-base font-medium font-raleway lining-nums mx-2 my-2'>Выбранные опции:</p>
-                        <TableComponent userChoices={userChoices}/>
+                        <TableComponent userChoices={userChoices} />
                         <p className='text-lg font-semibold font-raleway lining-nums mx-12 my-4 text-right'>Итого: {formatNumbers(calculateTotal())}</p>
                         <form className='flex flex-wrap' netlify>
                             <input type="text" id="name" className="font-raleway font-semibold bg-[#D9D9D9] text-black 
-                            text-x rounded-2xl focus: xs:text-sm w-full sm:p-4 xs:p-2 sm:my-4 xs:my-2" 
-                            placeholder={'Введите ФИО...'} value={name} onChange={handleNameChange} required />
+                            text-x rounded-2xl focus: xs:text-sm w-full sm:p-4 xs:p-2 sm:my-4 xs:my-2"
+                                placeholder={'Введите ФИО...'} value={name} onChange={handleNameChange} required />
                             <InputMask mask="+7 999 999 99 99" maskChar={null} value={phone} onChange={handlePhoneChange}>
                                 {() => (
                                     <input
                                         type="tel"
                                         name="floating_phone"
-                                        id="floating_phone" 
-                                        className="font-raleway lining-nums font-semibold bg-[#D9D9D9] text-black xs:text-sm rounded-2xl focus: w-full sm:p-4 xs:p-2 sm:my-4 xs:my-2" 
-                                        placeholder={'Введите Номер телефона..'} 
-                                        required 
+                                        id="floating_phone"
+                                        className="font-raleway lining-nums font-semibold bg-[#D9D9D9] text-black xs:text-sm rounded-2xl focus: w-full sm:p-4 xs:p-2 sm:my-4 xs:my-2"
+                                        placeholder={'Введите Номер телефона..'}
+                                        required
                                     />
                                 )}
                             </InputMask>
