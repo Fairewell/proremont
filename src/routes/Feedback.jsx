@@ -1,7 +1,6 @@
 import styles from "../style";
 import { useState } from "react";
 import { CTA, Footer, Navbar, Plashka, CustomScrollbar } from "../components";
-import MapComponent from "../components/Map";
 import InputMask from 'react-input-mask';
 import { map } from "../assets";
 

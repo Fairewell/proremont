@@ -311,6 +311,11 @@ export const navLinks = [
     id: "prices",
     title: 'Прайс',
     isSTR: true
+  },
+  {
+    id: "feedback",
+    title: 'Обратная связь',
+    isSTR: true
   }
 ];
 
